@@ -11,16 +11,19 @@ function computerPlay() {
 function playRound(playerChoice) {
     let computerChoice = computerPlay()
     let textoutput = ""
+    let winner = ""
 
     switch (playerChoice) {
         case 'water':
             if (computerChoice === 'grass') {
                 computerWins += 1
+                winner += "bot"
                 textoutput += "Bot (grass) beats You (water)"
                 break
             }
             else if (computerChoice === 'fire') {
                 playerWins += 1
+                winner += "player"
                 textoutput += "You (water) beat Bot (fire)"
                 break
             }
@@ -32,11 +35,13 @@ function playRound(playerChoice) {
         case 'fire':
             if (computerChoice === 'water') {
                 computerWins += 1
+                winner += "bot"
                 textoutput += "Bot (water) beats You (fire)"
                 break
             }
             else if (computerChoice === 'grass') {
                 playerWins += 1
+                winner += "player"
                 textoutput += "You (fire) beat Bot (grass)"
                 break
             }
@@ -48,11 +53,13 @@ function playRound(playerChoice) {
         case 'grass':
             if (computerChoice === 'fire') {
                 computerWins += 1
+                winner += "bot"
                 textoutput += "Bot (fire) beats You (grass)"
                 break
             }
             else if (computerChoice === 'water') {
                 playerWins += 1
+                winner += "player"
                 textoutput += "You (grass) beat Bot (water)"
                 break
             }
@@ -61,13 +68,48 @@ function playRound(playerChoice) {
                 break
             }
     }
-    document.getElementById('textbox').innerHTML = textoutput
+    const para = document.createElement("p")
+    const node = document.createTextNode(textoutput)
+    para.appendChild(node)
+    const element = document.getElementById("textbox")
+    element.appendChild(para)
+
+    updateDots(winner)
+
+    return
+}
+
+function checkWinner() {
+    if(playerWins >= 5) {
+        let r = confirm("You win! Click ok to play again")
+        if (r == true) {
+            window.location.reload()
+        }
+    }
+    if(computerWins >= 5) {
+        let r = confirm("Bot wins! Click ok to play again")
+        if (r == true) {
+            window.location.reload()
+        }
+    }
+    return
+}
+
+function updateDots(roundWinner){
+    let targetDot = ""
+    if(roundWinner === "player") {
+        targetDot = targetDot + "player" + playerWins
+    } 
+    if(roundWinner === "bot") {
+        targetDot = targetDot + "comp" + computerWins
+    }
+    document.getElementById(targetDot).style.backgroundColor = "green"
     return
 }
 
 buttons.forEach(button => {
     button.addEventListener('click', function() {
         playRound(button.value)
-        console.log("player choice: " + button.value)
+        checkWinner()
     })
 })

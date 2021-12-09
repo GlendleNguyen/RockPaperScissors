@@ -123,8 +123,8 @@ function updateBotImage(type) {
 
 buttons.forEach(button => {
     button.addEventListener('click', function() {
-        playRound(button.value)
         updatePlayerImage(button.value)
+        playRound(button.value)
         checkWinner()
     })
 })

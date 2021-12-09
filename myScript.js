@@ -1,90 +1,64 @@
+let playerWins = 0
+let computerWins = 0
+const buttons = document.querySelectorAll('input')
+
 function computerPlay() {
-    const choice = ["rock", "paper", "scissors"]
+    const choice = ["water", "fire", "grass"]
     // returns a random choice for the computer
     return choice[Math.floor(Math.random() * 3)]
 }
 
-function playRound(playerSelection, computerSelection) {
-    let playerChoice = playerSelection.toLowerCase()
-    let outcome 
+function playRound(playerChoice) {
+    let computerChoice = computerPlay()
 
-    switch(playerChoice) {
-        case 'rock':
-            if(computerSelection === 'paper') {
-                outcome = 'lose'
-                console.log("You Lose! Paper beats Rock")
+    switch (playerChoice) {
+        case 'water':
+            if (computerChoice === 'grass') {
+                console.log('You lose! Grass beats water')
                 break
-            } 
-            else if (computerSelection === 'scissors') {
-                outcome = 'win'
-                console.log("You Win! Rock beats Scissors")
+            }
+            else if (computerChoice === 'fire') {
+                console.log('You win! Water beats fire')
                 break
             }
             else {
-                outcome = 'draw'
-                console.log("Draw!")
+                console.log('Draw!')
                 break
             }
-        case 'scissors':
-            if(computerSelection === 'rock') {
-                outcome = 'lose'
-                console.log("You Lose! Rock beats Scissors")
+
+        case 'fire':
+            if (computerChoice === 'water') {
+                console.log('You lose! Water beats fire')
                 break
-            } 
-            else if (computerSelection === 'paper') {
-                outcome = 'win'
-                console.log("You Win! Scissors beats Paper")
+            }
+            else if (computerChoice === 'grass') {
+                console.log('You win! Fire beats grass')
                 break
             }
             else {
-                outcome = 'draw'
-                console.log("Draw!")
+                console.log('Draw!')
                 break
             }
-        case 'paper':
-            if(computerSelection === 'scissors') {
-                outcome = 'lose'
-                console.log("You Lose! Scissors beats Paper")
+
+        case 'grass':
+            if (computerChoice === 'fire') {
+                console.log('You lose! Fire beats grass')
                 break
-            } 
-            else if (computerSelection === 'rock') {
-                outcome = 'win'
-                console.log("You Win! Paper beats Rock")
+            }
+            else if (computerChoice === 'water') {
+                console.log('You win! Grass beats water')
                 break
             }
             else {
-                outcome = 'draw'
-                console.log("Draw!")
+                console.log('Draw!')
                 break
             }
-        }
-        return outcome
     }
+    return
+}
 
-    function game() {
-        let playerWins = 0
-        let computerWins = 0
-        let playerChoice
-
-        while(true) {
-            playerChoice = window.prompt('Rock, Paper, or Scissors?', '');
-            
-            switch(playRound(playerChoice, computerPlay())) {
-                case 'win':
-                    playerWins++
-                    break
-                case 'lose':
-                    computerWins++
-                    break
-            }
-            if(playerWins === 5 || computerWins === 5) {
-                break
-            }
-        }
-
-        if(playerWins == 5) {
-            console.log("Player wins!")
-        } else {
-            console.log("Computer wins!")
-        }
-    }
+buttons.forEach(button => {
+    button.addEventListener('click', function () {
+        playRound(button.value)
+    })
+})

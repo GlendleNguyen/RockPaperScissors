@@ -5,7 +5,9 @@ const buttons = document.querySelectorAll('input')
 function computerPlay() {
     const choice = ['water', 'fire', 'grass']
     // returns a random choice for the computer
-    return choice[Math.floor(Math.random() * 3)]
+    let compchoice = choice[Math.floor(Math.random() * 3)]
+    updateBotImage(compchoice)
+    return compchoice
 }
 
 function playRound(playerChoice) {
@@ -107,9 +109,22 @@ function updateDots(roundWinner){
     return
 }
 
+function updatePlayerImage(type) {
+    let source = "./images/" + type + "1" + ".png"
+    console.log(source)
+    document.getElementById("playerchoice").src=source
+}
+
+function updateBotImage(type) {
+    let source = "./images/" + type + "1" + ".png"
+    console.log(source)
+    document.getElementById("compchoice").src=source
+}
+
 buttons.forEach(button => {
     button.addEventListener('click', function() {
         playRound(button.value)
+        updatePlayerImage(button.value)
         checkWinner()
     })
 })

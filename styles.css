@@ -45,6 +45,21 @@ H1 {
     margin-top: 50px; 
 }
 
+#water {
+    width: 50px;
+    height: 50px; 
+}
+
+#fire {
+    width: 50px;
+    height: 50px; 
+}
+
+#grass {
+    width: 50px;
+    height: 50px; 
+}
+
 .dot {
     height: 25px;
     width: 25px;
@@ -53,3 +68,8 @@ H1 {
     display: inline-block;
   }
 
+.divider {
+    width:20px;
+    height:auto;
+    display:inline-block;
+}

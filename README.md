@@ -1,5 +1,9 @@
 # RockPaperScissors
 
-Rock, paper, scissors game made with Javascript for TheOdinProject. 
+Inspired and written for TheOdinProject. This project is written with HTML, CSS, and Javascript. 
 
-TODO: implement javascript gameplay elements. 
+A rock, paper scissors game presented as the three Pokemon starter types. 
+
+Water beats fire, fire beats grass, and grass beats water. First to 5 points wins. 
+
+
